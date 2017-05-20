@@ -17,12 +17,13 @@
 		052140001ECF164C0093F9F1 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05213FFE1ECF164C0093F9F1 /* MainWindowController.xib */; };
 		0521400C1ECF93280093F9F1 /* NSString+KeychainCracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0521400A1ECF93280093F9F1 /* NSString+KeychainCracker.m */; };
 		0527C4221ED083D100E002DC /* KeychainCracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0527C41E1ED083D100E002DC /* KeychainCracker.cpp */; };
-		0527C4231ED083D100E002DC /* KeychainCracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0527C4211ED083D100E002DC /* KeychainCracker.m */; };
+		0527C4231ED083D100E002DC /* ConcreteKeychainCracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0527C4211ED083D100E002DC /* ConcreteKeychainCracker.m */; };
 		0527C4251ED084FB00E002DC /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0527C4241ED084FB00E002DC /* words.txt */; };
 		055488981ECFBA1800907ABA /* test.keychain-db in Resources */ = {isa = PBXBuildFile; fileRef = 055488971ECFBA1800907ABA /* test.keychain-db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051131531ED08B170017A8FB /* KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainCracker.h; sourceTree = "<group>"; };
 		05213FD01ECF13330093F9F1 /* KeychainCracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainCracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05213FD61ECF13330093F9F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05213FE01ECF13330093F9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,9 +40,9 @@
 		052140091ECF93280093F9F1 /* NSString+KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KeychainCracker.h"; sourceTree = "<group>"; };
 		0521400A1ECF93280093F9F1 /* NSString+KeychainCracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KeychainCracker.m"; sourceTree = "<group>"; };
 		0527C41E1ED083D100E002DC /* KeychainCracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeychainCracker.cpp; sourceTree = "<group>"; };
-		0527C41F1ED083D100E002DC /* KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainCracker.h; sourceTree = "<group>"; };
+		0527C41F1ED083D100E002DC /* ConcreteKeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteKeychainCracker.h; sourceTree = "<group>"; };
 		0527C4201ED083D100E002DC /* KeychainCracker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeychainCracker.hpp; sourceTree = "<group>"; };
-		0527C4211ED083D100E002DC /* KeychainCracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainCracker.m; sourceTree = "<group>"; };
+		0527C4211ED083D100E002DC /* ConcreteKeychainCracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteKeychainCracker.m; sourceTree = "<group>"; };
 		0527C4241ED084FB00E002DC /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 		055488971ECFBA1800907ABA /* test.keychain-db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "test.keychain-db"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,10 +132,11 @@
 		0527C41D1ED083D100E002DC /* Crackers */ = {
 			isa = PBXGroup;
 			children = (
+				0527C41F1ED083D100E002DC /* ConcreteKeychainCracker.h */,
+				0527C4211ED083D100E002DC /* ConcreteKeychainCracker.m */,
 				0527C41E1ED083D100E002DC /* KeychainCracker.cpp */,
-				0527C41F1ED083D100E002DC /* KeychainCracker.h */,
 				0527C4201ED083D100E002DC /* KeychainCracker.hpp */,
-				0527C4211ED083D100E002DC /* KeychainCracker.m */,
+				051131531ED08B170017A8FB /* KeychainCracker.h */,
 			);
 			path = Crackers;
 			sourceTree = "<group>";
@@ -222,7 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0527C4231ED083D100E002DC /* KeychainCracker.m in Sources */,
+				0527C4231ED083D100E002DC /* ConcreteKeychainCracker.m in Sources */,
 				05213FFD1ECF16300093F9F1 /* MainWindowController.m in Sources */,
 				0521400C1ECF93280093F9F1 /* NSString+KeychainCracker.m in Sources */,
 				0527C4221ED083D100E002DC /* KeychainCracker.cpp in Sources */,

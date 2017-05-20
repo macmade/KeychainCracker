@@ -23,17 +23,17 @@
  ******************************************************************************/
 
 /*!
- * @file        KeychainCracker.m
+ * @file        ConcreteKeychainCracker.m
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
-#import "KeychainCracker.h"
+#import "ConcreteKeychainCracker.h"
 #import "NSString+KeychainCracker.h"
 #import <stdatomic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KeychainCracker()
+@interface ConcreteKeychainCracker()
 {
     atomic_ulong   _processed;
     atomic_bool    _unlocked;
@@ -66,16 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-@implementation KeychainCracker
-
-- ( instancetype )init
-{
-    return [ self initWithKeychain: @"" passwords: @[] options: KeychainCrackerOptionDefault threadCount: 0 ];
-}
+@implementation ConcreteKeychainCracker
 
 - ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads
 {
-    if( ( self = [ super init ] ) )
+    if( ( self = [ self init ] ) )
     {
         self.options        = options;
         self.keychainName   = keychain;

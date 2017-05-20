@@ -23,31 +23,17 @@
  ******************************************************************************/
 
 /*!
- * @header      KeychainCracker.h
+ * @header      ConcreteKeychainCracker.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
 @import Foundation;
 
+#import "KeychainCracker.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_OPTIONS( NSInteger, KeychainCrackerOptions )
-{
-    KeychainCrackerOptionDefault                = 0,
-    KeychainCrackerOptionCaseVariants           = 1 << 0,
-    KeychainCrackerOptionCommonSubstitutions    = 1 << 1
-};
-
-@protocol KeychainCracker< NSObject >
-
-@property( atomic, readonly, nullable ) NSString * message;
-@property( atomic, readonly           ) double     progress;
-@property( atomic, readonly           ) BOOL       progressIsIndeterminate;
-@property( atomic, readonly           ) NSUInteger secondsRemaining;
-
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads;
-- ( void )crack: ( void ( ^ )( BOOL passwordFound, NSString * _Nullable password ) )completion;
-- ( void )stop;
+@interface ConcreteKeychainCracker: NSObject < KeychainCracker >
 
 @end
 

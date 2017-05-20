@@ -29,28 +29,29 @@
 
 #import "MainWindowController.h"
 #import "KeychainCracker.h"
+#import "ConcreteKeychainCracker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainWindowController()
 
-@property( atomic, readwrite, assign           ) BOOL              running;
-@property( atomic, readwrite, assign           ) BOOL              caseVariants;
-@property( atomic, readwrite, assign           ) BOOL              commonSubstitutions;
-@property( atomic, readwrite, strong, nullable ) NSString        * keychain;
-@property( atomic, readwrite, strong, nullable ) NSString        * wordList;
-@property( atomic, readwrite, strong, nullable ) NSImage         * keychainIcon;
-@property( atomic, readwrite, strong, nullable ) NSImage         * wordListIcon;
-@property( atomic, readwrite, strong, nullable ) NSString        * runningLabel;
-@property( atomic, readwrite, strong, nullable ) KeychainCracker * cracker;
-@property( atomic, readwrite, strong, nullable ) NSTimer         * timer;
-@property( atomic, readwrite, assign           ) NSInteger         numberOfThreads;
-@property( atomic, readwrite, assign           ) double            progress;
-@property( atomic, readwrite, assign           ) BOOL              indeterminate;
-@property( atomic, readwrite, assign           ) BOOL              hasStopped;
-@property( atomic, readwrite, assign           ) BOOL              hasTimeRemaining;
-@property( atomic, readwrite, strong, nullable ) NSString        * timeRemainingLabel;
-@property( atomic, readwrite, assign           ) BOOL              useCPPImplementation;
+@property( atomic, readwrite, assign           ) BOOL                  running;
+@property( atomic, readwrite, assign           ) BOOL                  caseVariants;
+@property( atomic, readwrite, assign           ) BOOL                  commonSubstitutions;
+@property( atomic, readwrite, strong, nullable ) NSString            * keychain;
+@property( atomic, readwrite, strong, nullable ) NSString            * wordList;
+@property( atomic, readwrite, strong, nullable ) NSImage             * keychainIcon;
+@property( atomic, readwrite, strong, nullable ) NSImage             * wordListIcon;
+@property( atomic, readwrite, strong, nullable ) NSString            * runningLabel;
+@property( atomic, readwrite, strong, nullable ) id< KeychainCracker > cracker;
+@property( atomic, readwrite, strong, nullable ) NSTimer             * timer;
+@property( atomic, readwrite, assign           ) NSInteger             numberOfThreads;
+@property( atomic, readwrite, assign           ) double                progress;
+@property( atomic, readwrite, assign           ) BOOL                  indeterminate;
+@property( atomic, readwrite, assign           ) BOOL                  hasStopped;
+@property( atomic, readwrite, assign           ) BOOL                  hasTimeRemaining;
+@property( atomic, readwrite, strong, nullable ) NSString            * timeRemainingLabel;
+@property( atomic, readwrite, assign           ) BOOL                  useCPPImplementation;
 
 - ( void )windowWillClose: ( NSNotification * )notification;
 - ( IBAction )crack: ( nullable id )sender;
@@ -213,7 +214,7 @@ NS_ASSUME_NONNULL_END
         options |= KeychainCrackerOptionCommonSubstitutions;
     }
     
-    self.cracker = [ [ KeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) ];
+    self.cracker = [ [ ConcreteKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) ];
     
     if( self.cracker == nil )
     {
