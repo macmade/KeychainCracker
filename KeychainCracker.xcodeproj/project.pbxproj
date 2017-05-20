@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051131581ED08C330017A8FB /* GenericKeychainCracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 051131571ED08C330017A8FB /* GenericKeychainCracker.mm */; };
 		05213FD71ECF13330093F9F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FD61ECF13330093F9F1 /* main.m */; };
 		05213FED1ECF13E50093F9F1 /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FEC1ECF13E50093F9F1 /* ApplicationDelegate.m */; };
 		05213FF11ECF14AC0093F9F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05213FEF1ECF14AC0093F9F1 /* MainMenu.xib */; };
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		051131531ED08B170017A8FB /* KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainCracker.h; sourceTree = "<group>"; };
+		051131561ED08C330017A8FB /* GenericKeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericKeychainCracker.h; sourceTree = "<group>"; };
+		051131571ED08C330017A8FB /* GenericKeychainCracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenericKeychainCracker.mm; sourceTree = "<group>"; };
 		05213FD01ECF13330093F9F1 /* KeychainCracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainCracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05213FD61ECF13330093F9F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05213FE01ECF13330093F9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				0527C41E1ED083D100E002DC /* KeychainCracker.cpp */,
 				0527C4201ED083D100E002DC /* KeychainCracker.hpp */,
 				051131531ED08B170017A8FB /* KeychainCracker.h */,
+				051131561ED08C330017A8FB /* GenericKeychainCracker.h */,
+				051131571ED08C330017A8FB /* GenericKeychainCracker.mm */,
 			);
 			path = Crackers;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				05213FD71ECF13330093F9F1 /* main.m in Sources */,
 				05213FF41ECF15140093F9F1 /* AboutWindowController.m in Sources */,
 				05213FED1ECF13E50093F9F1 /* ApplicationDelegate.m in Sources */,
+				051131581ED08C330017A8FB /* GenericKeychainCracker.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

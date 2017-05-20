@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 /*!
- * @header      ConcreteKeychainCracker.h
+ * @header      GenericKeychainCracker.h
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
@@ -37,7 +37,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ConcreteKeychainCracker: NSObject < KeychainCracker >
+typedef NS_ENUM( NSInteger, GenericKeychainCrackerImplementation )
+{
+    GenericKeychainCrackerImplementationObjectiveC,
+    GenericKeychainCrackerImplementationCXX,
+};
+
+@interface GenericKeychainCracker: NSObject < KeychainCracker >
+
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads implementation: ( GenericKeychainCrackerImplementation )imp NS_DESIGNATED_INITIALIZER;
 
 @end
 

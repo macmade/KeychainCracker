@@ -27,7 +27,11 @@
  * @copyright   (c) 2017, Jean-David Gadina - www.xs-labs.com
  */
 
+#ifdef __cplusplus
+#import <Foundation/Foundation.h>
+#else
 @import Foundation;
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

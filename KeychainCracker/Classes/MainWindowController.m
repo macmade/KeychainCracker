@@ -29,7 +29,7 @@
 
 #import "MainWindowController.h"
 #import "KeychainCracker.h"
-#import "ConcreteKeychainCracker.h"
+#import "GenericKeychainCracker.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -214,7 +214,7 @@ NS_ASSUME_NONNULL_END
         options |= KeychainCrackerOptionCommonSubstitutions;
     }
     
-    self.cracker = [ [ ConcreteKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) ];
+    self.cracker = [ [ GenericKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) implementation: GenericKeychainCrackerImplementationObjectiveC ];
     
     if( self.cracker == nil )
     {
