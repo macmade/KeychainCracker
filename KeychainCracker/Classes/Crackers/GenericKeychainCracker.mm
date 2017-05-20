@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong ) ConcreteKeychainCracker            * objcCracker;
 @property( atomic, readwrite, assign ) XS::KeychainCracker                * cxxCracker;
 
+- ( std::vector< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array;
+
 @end
 
 NS_ASSUME_NONNULL_END
@@ -62,7 +64,7 @@ NS_ASSUME_NONNULL_END
         }
         else
         {
-            
+            self.cxxCracker = new XS::KeychainCracker( keychain.UTF8String, [ self stringArrayToStringVector: passwords ], ( unsigned )options, threads );
         }
     }
     
@@ -72,6 +74,24 @@ NS_ASSUME_NONNULL_END
 - ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads
 {
     return [ self initWithKeychain: keychain passwords: passwords options: options threadCount: threads implementation: GenericKeychainCrackerImplementationObjectiveC ];
+}
+
+- ( void )dealloc
+{
+    delete self.cxxCracker;
+}
+
+- ( std::vector< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array
+{
+    NSString                 * str;
+    std::vector< std::string > v( array.count );
+    
+    for( str in array )
+    {
+        v.push_back( str.UTF8String );
+    }
+    
+    return v;
 }
 
 - ( void )crack: ( void ( ^ )( BOOL passwordFound, NSString * _Nullable password ) )completion
