@@ -119,7 +119,9 @@ NS_ASSUME_NONNULL_END
         [ self.objcCracker stop ];
     }
     else
-    {}
+    {
+        self.cxxCracker->stop();
+    }
 }
 
 - ( NSString * )message
