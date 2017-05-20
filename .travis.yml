@@ -1,0 +1,8 @@
+language: objective-c
+install:
+- rvm get head
+- gem install xcpretty
+script:
+- set -o pipefail && xcodebuild -project "KeychainCracker.xcodeproj" -scheme "KeychainCracker" build analyze | xcpretty
+notifications:
+    slack: xs-labs:FXh1yLXNkpcVxKZhZU6icdhI
