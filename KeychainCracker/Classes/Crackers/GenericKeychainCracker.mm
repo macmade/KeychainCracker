@@ -101,7 +101,15 @@ NS_ASSUME_NONNULL_END
         [ self.objcCracker crack: completion ];
     }
     else
-    {}
+    {
+        self.cxxCracker->crack
+        (
+            [ completion ]( bool found, const std::string & password )
+            {
+                completion( found, [ NSString stringWithUTF8String: password.c_str() ] );
+            }
+        );
+    }
 }
 
 - ( void )stop
