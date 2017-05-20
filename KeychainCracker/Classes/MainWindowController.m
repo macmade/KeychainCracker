@@ -181,9 +181,10 @@ NS_ASSUME_NONNULL_END
 
 - ( IBAction )crack: ( nullable id )sender
 {
-    KeychainCrackerOptions  options;
-    NSArray< NSString * > * passwords;
-    NSData                * data;
+    GenericKeychainCrackerImplementation imp;
+    KeychainCrackerOptions               options;
+    NSArray< NSString * >              * passwords;
+    NSData                             * data;
     
     ( void )sender;
     
@@ -214,7 +215,8 @@ NS_ASSUME_NONNULL_END
         options |= KeychainCrackerOptionCommonSubstitutions;
     }
     
-    self.cracker = [ [ GenericKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) implementation: GenericKeychainCrackerImplementationObjectiveC ];
+    imp          = ( self.useCPPImplementation ) ? GenericKeychainCrackerImplementationCXX : GenericKeychainCrackerImplementationObjectiveC;
+    self.cracker = [ [ GenericKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) implementation: imp ];
     
     if( self.cracker == nil )
     {
