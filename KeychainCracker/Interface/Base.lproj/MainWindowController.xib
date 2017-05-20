@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="62" width="644" height="311"/>
                                 <subviews>
                                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="DGr-cJ-DyR">
-                                        <rect key="frame" x="306" y="150" width="32" height="32"/>
+                                        <rect key="frame" x="306" y="170" width="32" height="32"/>
                                         <connections>
                                             <binding destination="-2" name="hidden" keyPath="running" id="Qoz-wo-Hqk">
                                                 <dictionary key="options">
@@ -79,7 +79,7 @@
                                         </connections>
                                     </progressIndicator>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoJ-fJ-cLD">
-                                        <rect key="frame" x="305" y="116" width="33" height="14"/>
+                                        <rect key="frame" x="305" y="136" width="33" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="5Py-lc-RQv">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -95,14 +95,14 @@
                                         </connections>
                                     </textField>
                                     <progressIndicator wantsLayer="YES" maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="23p-4W-ptG">
-                                        <rect key="frame" x="20" y="92" width="604" height="20"/>
+                                        <rect key="frame" x="20" y="112" width="604" height="20"/>
                                         <connections>
                                             <binding destination="-2" name="hidden" keyPath="indeterminate" id="CZQ-cx-dd3"/>
                                             <binding destination="-2" name="value" keyPath="progress" id="GBC-zg-EBa"/>
                                         </connections>
                                     </progressIndicator>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTi-e2-WSz">
-                                        <rect key="frame" x="306" y="74" width="33" height="14"/>
+                                        <rect key="frame" x="306" y="94" width="33" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="oyh-Q8-Ths">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -346,7 +346,7 @@
                                     <constraint firstAttribute="trailing" secondItem="23p-4W-ptG" secondAttribute="trailing" constant="20" id="OVR-6E-DQ8"/>
                                     <constraint firstItem="PoJ-fJ-cLD" firstAttribute="centerX" secondItem="DGr-cJ-DyR" secondAttribute="centerX" id="Owj-ny-DWa"/>
                                     <constraint firstItem="ESG-ms-bzb" firstAttribute="width" secondItem="H5x-X0-KlF" secondAttribute="width" id="Pyk-BR-gFb"/>
-                                    <constraint firstItem="DGr-cJ-DyR" firstAttribute="centerY" secondItem="H5x-X0-KlF" secondAttribute="centerY" constant="-10" id="YjL-Jh-Rsp"/>
+                                    <constraint firstItem="DGr-cJ-DyR" firstAttribute="centerY" secondItem="H5x-X0-KlF" secondAttribute="centerY" constant="-30" id="YjL-Jh-Rsp"/>
                                     <constraint firstItem="UTi-e2-WSz" firstAttribute="centerX" secondItem="23p-4W-ptG" secondAttribute="centerX" id="Ykw-5X-0nm"/>
                                     <constraint firstItem="23p-4W-ptG" firstAttribute="leading" secondItem="H5x-X0-KlF" secondAttribute="leading" constant="20" id="gb4-18-YTS"/>
                                     <constraint firstItem="PoJ-fJ-cLD" firstAttribute="top" secondItem="DGr-cJ-DyR" secondAttribute="bottom" constant="20" id="moB-7Q-qMO"/>
