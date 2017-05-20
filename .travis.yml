@@ -1,7 +1,6 @@
 language: objective-c
 osx_image: xcode8.3
 install:
-- rvm get head
 - gem install xcpretty
 script:
 - set -o pipefail && xcodebuild -project "KeychainCracker.xcodeproj" -scheme "KeychainCracker" build analyze | xcpretty
