@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05213FD71ECF13330093F9F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FD61ECF13330093F9F1 /* main.m */; };
+		05213FED1ECF13E50093F9F1 /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FEC1ECF13E50093F9F1 /* ApplicationDelegate.m */; };
+		05213FF11ECF14AC0093F9F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05213FEF1ECF14AC0093F9F1 /* MainMenu.xib */; };
+		05213FF41ECF15140093F9F1 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FF31ECF15140093F9F1 /* AboutWindowController.m */; };
+		05213FF71ECF15370093F9F1 /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05213FF51ECF15370093F9F1 /* AboutWindowController.xib */; };
+		05213FFA1ECF15EB0093F9F1 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 05213FF91ECF15EB0093F9F1 /* Icon.icns */; };
+		05213FFD1ECF16300093F9F1 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05213FFC1ECF16300093F9F1 /* MainWindowController.m */; };
+		052140001ECF164C0093F9F1 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05213FFE1ECF164C0093F9F1 /* MainWindowController.xib */; };
+		0521400C1ECF93280093F9F1 /* NSString+KeychainCracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0521400A1ECF93280093F9F1 /* NSString+KeychainCracker.m */; };
+		0527C4221ED083D100E002DC /* KeychainCracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0527C41E1ED083D100E002DC /* KeychainCracker.cpp */; };
+		0527C4231ED083D100E002DC /* KeychainCracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0527C4211ED083D100E002DC /* KeychainCracker.m */; };
+		0527C4251ED084FB00E002DC /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0527C4241ED084FB00E002DC /* words.txt */; };
+		055488981ECFBA1800907ABA /* test.keychain-db in Resources */ = {isa = PBXBuildFile; fileRef = 055488971ECFBA1800907ABA /* test.keychain-db */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		05213FD01ECF13330093F9F1 /* KeychainCracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainCracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05213FD61ECF13330093F9F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		05213FE01ECF13330093F9F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05213FEB1ECF13E50093F9F1 /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
+		05213FEC1ECF13E50093F9F1 /* ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
+		05213FF01ECF14AC0093F9F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		05213FF21ECF15140093F9F1 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		05213FF31ECF15140093F9F1 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
+		05213FF61ECF15370093F9F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindowController.xib; sourceTree = "<group>"; };
+		05213FF91ECF15EB0093F9F1 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
+		05213FFB1ECF16300093F9F1 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		05213FFC1ECF16300093F9F1 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
+		05213FFF1ECF164C0093F9F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainWindowController.xib; sourceTree = "<group>"; };
+		052140091ECF93280093F9F1 /* NSString+KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+KeychainCracker.h"; sourceTree = "<group>"; };
+		0521400A1ECF93280093F9F1 /* NSString+KeychainCracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+KeychainCracker.m"; sourceTree = "<group>"; };
+		0527C41E1ED083D100E002DC /* KeychainCracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeychainCracker.cpp; sourceTree = "<group>"; };
+		0527C41F1ED083D100E002DC /* KeychainCracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainCracker.h; sourceTree = "<group>"; };
+		0527C4201ED083D100E002DC /* KeychainCracker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeychainCracker.hpp; sourceTree = "<group>"; };
+		0527C4211ED083D100E002DC /* KeychainCracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainCracker.m; sourceTree = "<group>"; };
+		0527C4241ED084FB00E002DC /* words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
+		055488971ECFBA1800907ABA /* test.keychain-db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "test.keychain-db"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05213FCD1ECF13330093F9F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05213FA21ECED9960093F9F1 = {
+			isa = PBXGroup;
+			children = (
+				05213FD11ECF13330093F9F1 /* KeychainCracker */,
+				05213FAC1ECED9960093F9F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		05213FAC1ECED9960093F9F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05213FD01ECF13330093F9F1 /* KeychainCracker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05213FD11ECF13330093F9F1 /* KeychainCracker */ = {
+			isa = PBXGroup;
+			children = (
+				05213FEA1ECF13E50093F9F1 /* Classes */,
+				05213FEE1ECF13EF0093F9F1 /* Interface */,
+				055488961ECFBA1800907ABA /* Resources */,
+				05213FD51ECF13330093F9F1 /* Supporting Files */,
+			);
+			path = KeychainCracker;
+			sourceTree = "<group>";
+		};
+		05213FD51ECF13330093F9F1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				05213FE01ECF13330093F9F1 /* Info.plist */,
+				05213FD61ECF13330093F9F1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05213FEA1ECF13E50093F9F1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				05213FF21ECF15140093F9F1 /* AboutWindowController.h */,
+				05213FF31ECF15140093F9F1 /* AboutWindowController.m */,
+				05213FEB1ECF13E50093F9F1 /* ApplicationDelegate.h */,
+				05213FEC1ECF13E50093F9F1 /* ApplicationDelegate.m */,
+				0527C41D1ED083D100E002DC /* Crackers */,
+				05213FFB1ECF16300093F9F1 /* MainWindowController.h */,
+				05213FFC1ECF16300093F9F1 /* MainWindowController.m */,
+				052140091ECF93280093F9F1 /* NSString+KeychainCracker.h */,
+				0521400A1ECF93280093F9F1 /* NSString+KeychainCracker.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		05213FEE1ECF13EF0093F9F1 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				05213FF81ECF15C60093F9F1 /* Images */,
+				05213FF51ECF15370093F9F1 /* AboutWindowController.xib */,
+				05213FEF1ECF14AC0093F9F1 /* MainMenu.xib */,
+				05213FFE1ECF164C0093F9F1 /* MainWindowController.xib */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		05213FF81ECF15C60093F9F1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				05213FF91ECF15EB0093F9F1 /* Icon.icns */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		0527C41D1ED083D100E002DC /* Crackers */ = {
+			isa = PBXGroup;
+			children = (
+				0527C41E1ED083D100E002DC /* KeychainCracker.cpp */,
+				0527C41F1ED083D100E002DC /* KeychainCracker.h */,
+				0527C4201ED083D100E002DC /* KeychainCracker.hpp */,
+				0527C4211ED083D100E002DC /* KeychainCracker.m */,
+			);
+			path = Crackers;
+			sourceTree = "<group>";
+		};
+		055488961ECFBA1800907ABA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0527C4241ED084FB00E002DC /* words.txt */,
+				055488971ECFBA1800907ABA /* test.keychain-db */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05213FCF1ECF13330093F9F1 /* KeychainCracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05213FE11ECF13330093F9F1 /* Build configuration list for PBXNativeTarget "KeychainCracker" */;
+			buildPhases = (
+				05213FCC1ECF13330093F9F1 /* Sources */,
+				05213FCD1ECF13330093F9F1 /* Frameworks */,
+				05213FCE1ECF13330093F9F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainCracker;
+			productName = KeychainCracker;
+			productReference = 05213FD01ECF13330093F9F1 /* KeychainCracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05213FA31ECED9960093F9F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "XS-Labs";
+				TargetAttributes = {
+					05213FCF1ECF13330093F9F1 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 05213FA61ECED9960093F9F1 /* Build configuration list for PBXProject "KeychainCracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05213FA21ECED9960093F9F1;
+			productRefGroup = 05213FAC1ECED9960093F9F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05213FCF1ECF13330093F9F1 /* KeychainCracker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05213FCE1ECF13330093F9F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05213FFA1ECF15EB0093F9F1 /* Icon.icns in Resources */,
+				055488981ECFBA1800907ABA /* test.keychain-db in Resources */,
+				05213FF11ECF14AC0093F9F1 /* MainMenu.xib in Resources */,
+				052140001ECF164C0093F9F1 /* MainWindowController.xib in Resources */,
+				0527C4251ED084FB00E002DC /* words.txt in Resources */,
+				05213FF71ECF15370093F9F1 /* AboutWindowController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05213FCC1ECF13330093F9F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0527C4231ED083D100E002DC /* KeychainCracker.m in Sources */,
+				05213FFD1ECF16300093F9F1 /* MainWindowController.m in Sources */,
+				0521400C1ECF93280093F9F1 /* NSString+KeychainCracker.m in Sources */,
+				0527C4221ED083D100E002DC /* KeychainCracker.cpp in Sources */,
+				05213FD71ECF13330093F9F1 /* main.m in Sources */,
+				05213FF41ECF15140093F9F1 /* AboutWindowController.m in Sources */,
+				05213FED1ECF13E50093F9F1 /* ApplicationDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		05213FEF1ECF14AC0093F9F1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05213FF01ECF14AC0093F9F1 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		05213FF51ECF15370093F9F1 /* AboutWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05213FF61ECF15370093F9F1 /* Base */,
+			);
+			name = AboutWindowController.xib;
+			sourceTree = "<group>";
+		};
+		05213FFE1ECF164C0093F9F1 /* MainWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05213FFF1ECF164C0093F9F1 /* Base */,
+			);
+			name = MainWindowController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		05213FB01ECED9960093F9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_OBJC_ATSYNC = YES;
+				CLANG_ANALYZER_OBJC_COLLECTIONS = YES;
+				CLANG_ANALYZER_OBJC_DEALLOC = YES;
+				CLANG_ANALYZER_OBJC_GENERICS = YES;
+				CLANG_ANALYZER_OBJC_INCOMP_METHOD_TYPES = YES;
+				CLANG_ANALYZER_OBJC_NSCFERROR = YES;
+				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ANALYZER_OBJC_SELF_INIT = YES;
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = YES;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_GETPW_GETS = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_MKSTEMP = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_UNCHECKEDRETURN = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_VFORK = YES;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				ONLY_ACTIVE_ARCH = YES;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		05213FB11ECED9960093F9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ANALYZER_OBJC_ATSYNC = YES;
+				CLANG_ANALYZER_OBJC_COLLECTIONS = YES;
+				CLANG_ANALYZER_OBJC_DEALLOC = YES;
+				CLANG_ANALYZER_OBJC_GENERICS = YES;
+				CLANG_ANALYZER_OBJC_INCOMP_METHOD_TYPES = YES;
+				CLANG_ANALYZER_OBJC_NSCFERROR = YES;
+				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ANALYZER_OBJC_SELF_INIT = YES;
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = YES;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_GETPW_GETS = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_MKSTEMP = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_UNCHECKEDRETURN = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_VFORK = YES;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		05213FE21ECF13330093F9F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeychainCracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.KeychainCracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05213FE31ECF13330093F9F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KeychainCracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.KeychainCracker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05213FA61ECED9960093F9F1 /* Build configuration list for PBXProject "KeychainCracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05213FB01ECED9960093F9F1 /* Debug */,
+				05213FB11ECED9960093F9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05213FE11ECF13330093F9F1 /* Build configuration list for PBXNativeTarget "KeychainCracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05213FE21ECF13330093F9F1 /* Debug */,
+				05213FE31ECF13330093F9F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05213FA31ECED9960093F9F1 /* Project object */;
+}
