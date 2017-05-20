@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_END
         return self.objcCracker.message;
     }
     
-    return @"";
+    return [ NSString stringWithUTF8String: self.cxxCracker->message().c_str() ];
 }
 
 - ( double )progress
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_END
         return self.objcCracker.progress;
     }
     
-    return 0.0;
+    return self.cxxCracker->progress();
 }
 
 - ( BOOL )progressIsIndeterminate
@@ -141,7 +141,7 @@ NS_ASSUME_NONNULL_END
         return self.objcCracker.progressIsIndeterminate;
     }
     
-    return NO;
+    return self.cxxCracker->progressIsIndeterminate();
 }
 
 - ( NSUInteger )secondsRemaining
@@ -151,7 +151,7 @@ NS_ASSUME_NONNULL_END
         return self.objcCracker.secondsRemaining;
     }
     
-    return 0;
+    return self.cxxCracker->secondsRemaining();
 }
 
 @end
