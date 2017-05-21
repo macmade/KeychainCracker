@@ -198,20 +198,12 @@ NS_ASSUME_NONNULL_END
         {
             continue;
         }
-    }
-    
-    for( sub in groups )
-    {
-        if( sub.count == 0 )
-        {
-            continue;
-        }
         
         [ NSThread detachNewThreadSelector: @selector( crackPasswords: ) toTarget: self withObject: sub ];
-        
-        self.initialized             = YES;
-        self.progressIsIndeterminate = NO;
     }
+    
+    self.initialized             = YES;
+    self.progressIsIndeterminate = NO;
 }
 
 - ( void )generateVariants: ( NSMutableArray< NSString * > * )passwords withSelector: ( SEL )selector message: ( NSString * )message
@@ -222,14 +214,14 @@ NS_ASSUME_NONNULL_END
     NSString     * password;
     NSTimeInterval diff;
     
-    i                            = 0;
     n                            = passwords.count;
     self.progress                = 0;
     self.progressIsIndeterminate = NO;
     start                        = [ NSDate date ];
     
-    for( password in passwords.copy )
+    for( i = 0; i < n; i++ )
     {
+        password      = passwords[ 0 ];
         self.progress = ( double )i / ( double )n;
         self.message  = [ NSString stringWithFormat: @"%@ - %.0f%%", message, ( ( double )i / ( double )n ) * 100.0 ];
         
@@ -239,8 +231,6 @@ NS_ASSUME_NONNULL_END
         #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [ passwords addObjectsFromArray: [ password performSelector: selector ] ];
         #pragma clang diagnostic pop
-        
-        i++;
         
         diff                  = -[ start timeIntervalSinceNow ];
         self.secondsRemaining = ( NSUInteger )( ( n - i ) / ( i / diff ) );
