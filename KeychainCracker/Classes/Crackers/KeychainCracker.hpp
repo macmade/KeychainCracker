@@ -31,7 +31,7 @@
 #define XS_KEYCHAIN_CRACKER_HPP
 
 #include <string>
-#include <vector>
+#include <list>
 #include <functional>
 
 namespace XS
@@ -47,7 +47,7 @@ namespace XS
                 CommonSubstitutions = 1 << 1,
             };
             
-            KeychainCracker( const std::string & keychain, const std::vector< std::string > & passwords, unsigned int options, size_t threads );
+            KeychainCracker( const std::string & keychain, const std::list< std::string > & passwords, unsigned int options, size_t threads );
             ~KeychainCracker( void );
             
             KeychainCracker( const KeychainCracker & o )      = delete;

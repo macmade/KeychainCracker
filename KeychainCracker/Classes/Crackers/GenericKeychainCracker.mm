@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong ) ConcreteKeychainCracker            * objcCracker;
 @property( atomic, readwrite, assign ) XS::KeychainCracker                * cxxCracker;
 
-- ( std::vector< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array;
+- ( std::list< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array;
 
 @end
 
@@ -81,10 +81,10 @@ NS_ASSUME_NONNULL_END
     delete self.cxxCracker;
 }
 
-- ( std::vector< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array
+- ( std::list< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array
 {
     NSString                 * str;
-    std::vector< std::string > v( array.count );
+    std::list< std::string > v( array.count );
     
     for( str in array )
     {

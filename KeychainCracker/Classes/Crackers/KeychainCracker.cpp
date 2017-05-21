@@ -42,12 +42,12 @@ namespace XS
     {
         public:
             
-            IMPL( const std::string & keychain, const std::vector< std::string > & passwords, unsigned int options, size_t threads );
+            IMPL( const std::string & keychain, const std::list< std::string > & passwords, unsigned int options, size_t threads );
             ~IMPL( void );
             
             std::string                  _keychainName;
-            std::vector< std::string >   _passwords;
-            std::vector< std::string >   _foundPasswords;
+            std::list< std::string >   _passwords;
+            std::list< std::string >   _foundPasswords;
             std::atomic< size_t >        _threadCount;
             SecKeychainRef               _keychain;
             std::atomic< unsigned int  > _options;
@@ -68,15 +68,15 @@ namespace XS
             std::function< void( bool, const std::string & ) > _completion;
             
             void crack( void );
-            void generateVariants( std::vector< std::string > & passwords, std::vector< std::string > ( IMPL::* func )( const std::string & ), const std::string & message );
-            void crackPasswords( const std::vector< std::string > & passwords );
+            void generateVariants( std::list< std::string > & passwords, std::list< std::string > ( IMPL::* func )( const std::string & ), const std::string & message );
+            void crackPasswords( const std::list< std::string > & passwords );
             void checkProgress( void );
             
-            std::vector< std::string > caseVariants( const std::string & str );
-            std::vector< std::string > commonSubstitutions( const std::string & str );
+            std::list< std::string > caseVariants( const std::string & str );
+            std::list< std::string > commonSubstitutions( const std::string & str );
     };
     
-    KeychainCracker::KeychainCracker( const std::string & keychain, const std::vector< std::string > & passwords, unsigned int options, size_t threads ):
+    KeychainCracker::KeychainCracker( const std::string & keychain, const std::list< std::string > & passwords, unsigned int options, size_t threads ):
         impl( new IMPL( keychain, passwords, options, threads ) )
     {}
     
@@ -166,7 +166,7 @@ namespace XS
         this->impl->_progressIsIndeterminate = true;
     }
     
-    KeychainCracker::IMPL::IMPL( const std::string & keychain, const std::vector< std::string > & passwords, unsigned int options, size_t threads ):
+    KeychainCracker::IMPL::IMPL( const std::string & keychain, const std::list< std::string > & passwords, unsigned int options, size_t threads ):
         _keychainName(            keychain ),
         _passwords(               passwords ),
         _threadCount(             threads ),
@@ -202,11 +202,11 @@ namespace XS
     
     void KeychainCracker::IMPL::crack( void )
     {
-        std::vector< std::string >                passwords;
-        std::vector< std::vector< std::string > > groups;
+        std::list< std::string >                passwords;
+        std::list< std::list< std::string > > groups;
         unsigned long                             n;
         unsigned long                             i;
-        std::vector< std::thread >                threads;
+        std::list< std::thread >                threads;
         
         passwords               = this->_passwords;
         this->_secondsRemaining = 0;
@@ -249,16 +249,16 @@ namespace XS
         for( i = 0; i < this->_threadCount; i++ )
         {
             {
-                std::vector< std::string > sub;
+                std::list< std::string > sub;
                 
                 if( passwords.size() < n )
                 {
                     break;
                 }
                 
-                sub = std::vector< std::string >( passwords.begin(), passwords.begin() + static_cast< long >( n ) );
+                sub = std::list< std::string >( passwords.begin(), std::next( passwords.begin(), static_cast< long >( n ) ) );
                 
-                passwords.erase( passwords.begin(), passwords.begin() + static_cast< long >( n ) );
+                passwords.erase( passwords.begin(), std::next( passwords.begin(), static_cast< long >( n ) ) );
                 groups.push_back( sub );
             }
         }
@@ -277,7 +277,7 @@ namespace XS
                 break;
             }
             
-            sub.push_back( passwords[ 0 ] );
+            sub.push_back( *( passwords.begin() ) );
             passwords.erase( passwords.begin() );
         }
         
@@ -316,11 +316,11 @@ namespace XS
         }
     }
     
-    void KeychainCracker::IMPL::generateVariants( std::vector< std::string > & passwords, std::vector< std::string > ( IMPL::* func )( const std::string & ), const std::string & message )
+    void KeychainCracker::IMPL::generateVariants( std::list< std::string > & passwords, std::list< std::string > ( IMPL::* func )( const std::string & ), const std::string & message )
     {
         size_t                     i;
         size_t                     n;
-        std::vector< std::string > variants;
+        std::list< std::string > variants;
         time_t                     start;
         double                     diff;
         char                       percent[ 4 ] = { 0, 0, 0, 0 };
@@ -332,7 +332,7 @@ namespace XS
         
         for( i = 0; i < n; i++ )
         {
-            variants        = ( this->*( func ) )( passwords[ 0 ] );
+            variants        = ( this->*( func ) )( *( passwords.begin() ) );
             this->_progress = static_cast< double >( i ) / static_cast< double >( n );
             
             sprintf( percent, "%.0f", this->_progress * 100 );
@@ -356,7 +356,7 @@ namespace XS
         this->_progressIsIndeterminate = true;
     }
     
-    void KeychainCracker::IMPL::crackPasswords( const std::vector< std::string > & passwords )
+    void KeychainCracker::IMPL::crackPasswords( const std::list< std::string > & passwords )
     {
         this->_threadsRunning++;
         
@@ -491,7 +491,7 @@ namespace XS
         }
     }
     
-    std::vector< std::string > KeychainCracker::IMPL::caseVariants( const std::string & str )
+    std::list< std::string > KeychainCracker::IMPL::caseVariants( const std::string & str )
     {
         char                     * permutation;
         const char               * cp;
@@ -499,7 +499,7 @@ namespace XS
         size_t                     i;
         size_t                     j;
         size_t                     n;
-        std::vector< std::string > variants;
+        std::list< std::string > variants;
         
         cp     = str.c_str();
         length = str.length();
@@ -536,7 +536,7 @@ namespace XS
         return variants;
     }
     
-    std::vector< std::string > KeychainCracker::IMPL::commonSubstitutions( const std::string & str )
+    std::list< std::string > KeychainCracker::IMPL::commonSubstitutions( const std::string & str )
     {
         return { str };
     }
