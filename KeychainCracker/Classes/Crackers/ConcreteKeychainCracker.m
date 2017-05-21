@@ -157,9 +157,23 @@ NS_ASSUME_NONNULL_END
         [ self generateVariants: passwords withSelector: @selector( caseVariants ) message: @"Generating case variants" ];
     }
     
+    if( atomic_load( &_stopping ) == true )
+    {
+        self.initialized = YES;
+        
+        return;
+    }
+    
     if( self.options & KeychainCrackerOptionCommonSubstitutions )
     {
         [ self generateVariants: passwords withSelector: @selector( commonSubstitutions ) message: @"Generating common substitutions" ];
+    }
+    
+    if( atomic_load( &_stopping ) == true )
+    {
+        self.initialized = YES;
+        
+        return;
     }
     
     self.message                 = @"Preparing worker threads...";
@@ -181,6 +195,13 @@ NS_ASSUME_NONNULL_END
         [ groups addObject: sub ];
     }
     
+    if( atomic_load( &_stopping ) == true )
+    {
+        self.initialized = YES;
+        
+        return;
+    }
+    
     for( sub in groups )
     {
         if( passwords.count == 0 )
@@ -190,6 +211,13 @@ NS_ASSUME_NONNULL_END
         
         [ sub addObject: passwords.firstObject ];
         [ passwords removeObject: passwords.firstObject ];
+    }
+    
+    if( atomic_load( &_stopping ) == true )
+    {
+        self.initialized = YES;
+        
+        return;
     }
     
     for( sub in groups )
@@ -223,7 +251,7 @@ NS_ASSUME_NONNULL_END
     {
         password      = passwords[ 0 ];
         self.progress = ( double )i / ( double )n;
-        self.message  = [ NSString stringWithFormat: @"%@ - %.0f%%", message, ( ( double )i / ( double )n ) * 100.0 ];
+        self.message  = [ NSString stringWithFormat: @"%@ - %.0f%%", message, self.progress * 100.0 ];
         
         [ passwords removeObjectAtIndex: 0 ];
         
@@ -237,7 +265,7 @@ NS_ASSUME_NONNULL_END
         
         if( atomic_load( &_stopping ) == true )
         {
-            self.initialized = YES;
+            self.progressIsIndeterminate = YES;
             
             return;
         }
