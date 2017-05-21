@@ -84,9 +84,10 @@ NS_ASSUME_NONNULL_END
 {
     ( void )notification;
     
-    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.caseVariants        forKey: @"CaseVariants" ];
-    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.commonSubstitutions forKey: @"CommonSubstitutions" ];
-    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.numberOfThreads     forKey: @"NumberOfThreads" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.caseVariants         forKey: @"CaseVariants" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.commonSubstitutions  forKey: @"CommonSubstitutions" ];
+    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.numberOfThreads      forKey: @"NumberOfThreads" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.useCPPImplementation forKey: @"UseCPPImplementation" ];
     [ [ NSUserDefaults standardUserDefaults ] synchronize ];
 }
 
@@ -106,9 +107,10 @@ NS_ASSUME_NONNULL_END
     keychain = [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"Keychain" ];
     wordList = [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"WordList" ];
     
-    self.caseVariants        = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CaseVariants" ];
-    self.commonSubstitutions = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CommonSubstitutions" ];
-    self.numberOfThreads     = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"NumberOfThreads" ];
+    self.caseVariants         = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CaseVariants" ];
+    self.commonSubstitutions  = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CommonSubstitutions" ];
+    self.numberOfThreads      = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"NumberOfThreads" ];
+    self.useCPPImplementation = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"UseCPPImplementation" ];
     
     if( self.numberOfThreads <= 0 || self.numberOfThreads > 200 )
     {
