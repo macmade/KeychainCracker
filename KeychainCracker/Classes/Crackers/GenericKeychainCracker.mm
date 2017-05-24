@@ -30,6 +30,9 @@
 #import "GenericKeychainCracker.h"
 #import "ConcreteKeychainCracker.h"
 #import "KeychainCracker.hpp"
+#import <list>
+#import <string>
+#import <iostream>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong ) ConcreteKeychainCracker            * objcCracker;
 @property( atomic, readwrite, assign ) XS::KeychainCracker                * cxxCracker;
 
-- ( std::list< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array;
+- ( std::list< std::string > )stringArrayToStringList: ( NSArray< NSString * > * )array;
 
 @end
 
@@ -64,7 +67,7 @@ NS_ASSUME_NONNULL_END
         }
         else
         {
-            self.cxxCracker = new XS::KeychainCracker( keychain.UTF8String, [ self stringArrayToStringVector: passwords ], ( unsigned )options, threads );
+            self.cxxCracker = new XS::KeychainCracker( keychain.UTF8String, [ self stringArrayToStringList: passwords ], ( unsigned )options, threads );
         }
     }
     
@@ -81,17 +84,17 @@ NS_ASSUME_NONNULL_END
     delete self.cxxCracker;
 }
 
-- ( std::list< std::string > )stringArrayToStringVector: ( NSArray< NSString * > * )array
+- ( std::list< std::string > )stringArrayToStringList: ( NSArray< NSString * > * )array
 {
-    NSString                 * str;
-    std::list< std::string > v( array.count );
-    
+    NSString               * str;
+    std::list< std::string > l;
+        
     for( str in array )
     {
-        v.push_back( str.UTF8String );
+        l.push_back( str.UTF8String );
     }
     
-    return v;
+    return l;
 }
 
 - ( void )crack: ( void ( ^ )( BOOL passwordFound, NSString * _Nullable password ) )completion
