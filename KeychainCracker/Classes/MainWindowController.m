@@ -37,7 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property( atomic, readwrite, assign           ) BOOL                  running;
 @property( atomic, readwrite, assign           ) BOOL                  caseVariants;
+@property( atomic, readwrite, assign           ) NSInteger             caseVariantsMax;
 @property( atomic, readwrite, assign           ) BOOL                  commonSubstitutions;
+@property( atomic, readwrite, assign           ) NSInteger             commonSubstitutionsMax;
 @property( atomic, readwrite, strong, nullable ) NSString            * keychain;
 @property( atomic, readwrite, strong, nullable ) NSString            * wordList;
 @property( atomic, readwrite, strong, nullable ) NSImage             * keychainIcon;
@@ -84,10 +86,12 @@ NS_ASSUME_NONNULL_END
 {
     ( void )notification;
     
-    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.caseVariants         forKey: @"CaseVariants" ];
-    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.commonSubstitutions  forKey: @"CommonSubstitutions" ];
-    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.numberOfThreads      forKey: @"NumberOfThreads" ];
-    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.useCPPImplementation forKey: @"UseCPPImplementation" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.caseVariants           forKey: @"CaseVariants" ];
+    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.caseVariantsMax        forKey: @"CaseVariantsMax" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.commonSubstitutions    forKey: @"CommonSubstitutions" ];
+    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.commonSubstitutionsMax forKey: @"CommonSubstitutionsMax" ];
+    [ [ NSUserDefaults standardUserDefaults ] setInteger: self.numberOfThreads        forKey: @"NumberOfThreads" ];
+    [ [ NSUserDefaults standardUserDefaults ] setBool:    self.useCPPImplementation   forKey: @"UseCPPImplementation" ];
     [ [ NSUserDefaults standardUserDefaults ] synchronize ];
 }
 
@@ -107,14 +111,26 @@ NS_ASSUME_NONNULL_END
     keychain = [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"Keychain" ];
     wordList = [ [ NSUserDefaults standardUserDefaults ] objectForKey: @"WordList" ];
     
-    self.caseVariants         = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CaseVariants" ];
-    self.commonSubstitutions  = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CommonSubstitutions" ];
-    self.numberOfThreads      = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"NumberOfThreads" ];
-    self.useCPPImplementation = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"UseCPPImplementation" ];
+    self.caseVariants           = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CaseVariants" ];
+    self.caseVariantsMax        = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"CaseVariantsMax" ];
+    self.commonSubstitutions    = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"CommonSubstitutions" ];
+    self.commonSubstitutionsMax = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"CommonSubstitutionsMax" ];
+    self.numberOfThreads        = [ [ NSUserDefaults standardUserDefaults ] integerForKey: @"NumberOfThreads" ];
+    self.useCPPImplementation   = [ [ NSUserDefaults standardUserDefaults ] boolForKey:    @"UseCPPImplementation" ];
     
     if( self.numberOfThreads <= 0 || self.numberOfThreads > 200 )
     {
         self.numberOfThreads = 20;
+    }
+    
+    if( self.caseVariantsMax < 2 || self.caseVariantsMax > 20 )
+    {
+        self.caseVariantsMax = 20;
+    }
+    
+    if( self.commonSubstitutionsMax < 2 || self.commonSubstitutionsMax > 20 )
+    {
+        self.commonSubstitutionsMax = 5;
     }
     
     if( wordList.length && [ [ NSFileManager defaultManager ] fileExistsAtPath: wordList ] )
