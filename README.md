@@ -21,7 +21,7 @@ macOS keychain cracking tool.
 Disclaimer
 ----------
 
-I wrote this software in order to help relatives of a deceased friend to recover data from its computer.  
+I wrote this software in order to help relatives of a deceased friend to recover data from his computer.  
 **Please enjoy it responsibly, and please do not hack/harm people.**  
 
 >  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
