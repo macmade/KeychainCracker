@@ -18,6 +18,20 @@ macOS keychain cracking tool.
 
 ![Cracker](Assets/Cracker.png "Cracker")
 
+Disclaimer
+----------
+
+I wrote this software in order to help relatives of a deceased friend to recover data from its computer.  
+**Please enjoy it responsibly, and please do not hack/harm people.**  
+
+>  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+> THE SOFTWARE.
+
 License
 -------
 
