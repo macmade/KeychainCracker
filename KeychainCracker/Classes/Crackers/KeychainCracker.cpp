@@ -33,7 +33,9 @@
 #include <mutex>
 #include <atomic>
 #include <thread>
+#include <map>
 #include <chrono>
+#include <iostream>
 #include <Security/Security.h>
 
 namespace XS
@@ -46,8 +48,8 @@ namespace XS
             ~IMPL( void );
             
             std::string                  _keychainName;
-            std::list< std::string >   _passwords;
-            std::list< std::string >   _foundPasswords;
+            std::list< std::string >     _passwords;
+            std::list< std::string >     _foundPasswords;
             std::atomic< size_t >        _threadCount;
             SecKeychainRef               _keychain;
             std::atomic< unsigned int  > _options;
@@ -202,11 +204,11 @@ namespace XS
     
     void KeychainCracker::IMPL::crack( void )
     {
-        std::list< std::string >                passwords;
+        std::list< std::string >              passwords;
         std::list< std::list< std::string > > groups;
-        unsigned long                             n;
-        unsigned long                             i;
-        std::list< std::thread >                threads;
+        unsigned long                         n;
+        unsigned long                         i;
+        std::list< std::thread >              threads;
         
         passwords               = this->_passwords;
         this->_secondsRemaining = 0;
@@ -318,12 +320,12 @@ namespace XS
     
     void KeychainCracker::IMPL::generateVariants( std::list< std::string > & passwords, std::list< std::string > ( IMPL::* func )( const std::string & ), const std::string & message )
     {
-        size_t                     i;
-        size_t                     n;
+        size_t                   i;
+        size_t                   n;
         std::list< std::string > variants;
-        time_t                     start;
-        double                     diff;
-        char                       percent[ 4 ] = { 0, 0, 0, 0 };
+        time_t                   start;
+        double                   diff;
+        char                     percent[ 4 ] = { 0, 0, 0, 0 };
         
         n                              = passwords.size();
         this->_progress                = 0;
@@ -493,12 +495,12 @@ namespace XS
     
     std::list< std::string > KeychainCracker::IMPL::caseVariants( const std::string & str )
     {
-        char                     * permutation;
-        const char               * cp;
-        size_t                     length;
-        size_t                     i;
-        size_t                     j;
-        size_t                     n;
+        char                   * permutation;
+        const char             * cp;
+        size_t                   length;
+        size_t                   i;
+        size_t                   j;
+        size_t                   n;
         std::list< std::string > variants;
         
         cp     = str.c_str();
@@ -536,8 +538,86 @@ namespace XS
         return variants;
     }
     
+    static std::map< char, std::list< std::string > > * variants = nullptr;
+    
     std::list< std::string > KeychainCracker::IMPL::commonSubstitutions( const std::string & str )
     {
-        return { str };
+        std::list< std::string > l;
+        char                     c;
+        
+        {
+            static std::once_flag once;
+            
+            std::call_once
+            (
+                once,
+                []
+                {
+                    variants = new std::map< char, std::list< std::string > >
+                    {
+                        { 'A', { "4", "@", "^", "Д" } },
+                        { 'B', { "8", "ß", "6" } },
+                        { 'C', { "[", "¢", "{", "<", "(", "©" } },
+                        { 'D', { ")", "?", ">" } },
+                        { 'E', { "3", "&", "£", "€", "ë" } },
+                        { 'F', { "ƒ", "v" } },
+                        { 'G', { "&", "6", "9", "{" } },
+                        { 'H', { "#" } },
+                        { 'I', { "1", "|", "!" } },
+                        { 'J', { ";", "1" } },
+                        { 'K', {} },
+                        { 'L', { "1", "£", "7", "|" } },
+                        { 'M', {} },
+                        { 'N', { "И", "^", "ท" } },
+                        { 'O', { "0", "Q", "p", "Ø" } },
+                        { 'P', { "9" } },
+                        { 'Q', { "9", "2", "&" } },
+                        { 'R', { "®", "Я" } },
+                        { 'S', { "5", "$", "z", "§", "2" } },
+                        { 'T', { "7", "+", "†" } },
+                        { 'U', { "v", "µ", "บ" } },
+                        { 'V', {} },
+                        { 'W', { "Ш", "Щ", "พ" } },
+                        { 'X', { "Ж", "×" } },
+                        { 'Y', { "j", "Ч", "7", "¥" } },
+                        { 'Z', { "2", "%", "s" } }
+                    };
+                    
+                    for( const auto & p: *( variants ) )
+                    {
+                        variants->insert( { tolower( p.first ), p.second } );
+                    }
+                }
+            );
+        }
+        
+        if( str.length() == 0 )
+        {
+            return { "" };
+        }
+        
+        if( str.length() > 6 )
+        {
+            return { str };
+        }
+        
+        c = str[ 0 ];
+        
+        for( const auto & tv: this->commonSubstitutions( str.substr( 1 ) ) )
+        {
+            l.push_back( c + tv );
+            
+            if( variants->count( c ) == 0 )
+            {
+                continue;
+            }
+            
+            for( const auto & v: variants->at( c ) )
+            {
+                l.push_back( v + tv );
+            }
+        }
+        
+        return l;
     }
 }
