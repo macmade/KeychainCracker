@@ -51,11 +51,6 @@ static NSMutableDictionary< NSString *, NSArray< NSString * > * > * variants = n
     cp     = self.UTF8String;
     length = self.length;
     
-    if( length > 20 )
-    {
-        return @[ self ];
-    }
-    
     permutation = calloc( length + 1, 1 );
     
     if( permutation == NULL )
@@ -134,11 +129,6 @@ static NSMutableDictionary< NSString *, NSArray< NSString * > * > * variants = n
     if( self.length == 0 )
     {
         return @[ @"" ];
-    }
-    
-    if( self.length > 6 )
-    {
-        return @[ self ];
     }
     
     {

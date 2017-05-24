@@ -52,10 +52,10 @@ NS_ASSUME_NONNULL_END
 
 - ( nullable instancetype )init
 {
-    return [ self initWithKeychain: @"" passwords: @[] options: KeychainCrackerOptionDefault threadCount: 0 implementation: GenericKeychainCrackerImplementationObjectiveC ];
+    return [ self initWithKeychain: @"" passwords: @[] implementation: GenericKeychainCrackerImplementationObjectiveC ];
 }
 
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads implementation: ( GenericKeychainCrackerImplementation )imp
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords implementation: ( GenericKeychainCrackerImplementation )imp
 {
     if( ( self = [ super init ] ) )
     {
@@ -63,20 +63,20 @@ NS_ASSUME_NONNULL_END
         
         if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
         {
-            self.objcCracker = [ [ ConcreteKeychainCracker alloc ] initWithKeychain: keychain passwords: passwords options: options threadCount: threads ];
+            self.objcCracker = [ [ ConcreteKeychainCracker alloc ] initWithKeychain: keychain passwords: passwords ];
         }
         else
         {
-            self.cxxCracker = new XS::KeychainCracker( keychain.UTF8String, [ self stringArrayToStringList: passwords ], ( unsigned )options, threads );
+            self.cxxCracker = new XS::KeychainCracker( keychain.UTF8String, [ self stringArrayToStringList: passwords ] );
         }
     }
     
     return self;
 }
 
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords
 {
-    return [ self initWithKeychain: keychain passwords: passwords options: options threadCount: threads implementation: GenericKeychainCrackerImplementationObjectiveC ];
+    return [ self initWithKeychain: keychain passwords: passwords implementation: GenericKeychainCrackerImplementationObjectiveC ];
 }
 
 - ( void )dealloc
@@ -165,6 +165,72 @@ NS_ASSUME_NONNULL_END
     }
     
     return self.cxxCracker->secondsRemaining();
+}
+
+- ( NSUInteger )maxThreads
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        return self.objcCracker.maxThreads;
+    }
+    
+    return self.cxxCracker->maxThreads();
+}
+
+- ( NSUInteger )maxCharsForCaseVariants
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        return self.objcCracker.maxCharsForCaseVariants;
+    }
+    
+    return self.cxxCracker->maxCharsForCaseVariants();
+}
+
+- ( NSUInteger )maxCharsForCommonSubstitutions
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        return self.objcCracker.maxCharsForCommonSubstitutions;
+    }
+    
+    return self.cxxCracker->maxCharsForCommonSubstitutions();
+}
+
+- ( void )setMaxThreads: ( NSUInteger )value
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        self.objcCracker.maxThreads = value;
+    }
+    else
+    {
+        self.cxxCracker->maxThreads( value );
+    }
+}
+
+- ( void )setMaxCharsForCaseVariants: ( NSUInteger )value
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        self.objcCracker.maxCharsForCaseVariants = value;
+    }
+    else
+    {
+        self.cxxCracker->maxCharsForCaseVariants( value );
+    }
+}
+
+- ( void )setMaxCharsForCommonSubstitutions: ( NSUInteger )value
+{
+    if( self.implementation == GenericKeychainCrackerImplementationObjectiveC )
+    {
+        self.objcCracker.maxCharsForCommonSubstitutions = value;
+    }
+    else
+    {
+        self.cxxCracker->maxCharsForCommonSubstitutions( value );
+    }
 }
 
 @end

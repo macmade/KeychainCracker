@@ -35,21 +35,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_OPTIONS( NSInteger, KeychainCrackerOptions )
-{
-    KeychainCrackerOptionDefault                = 0,
-    KeychainCrackerOptionCaseVariants           = 1 << 0,
-    KeychainCrackerOptionCommonSubstitutions    = 1 << 1
-};
-
 @protocol KeychainCracker< NSObject >
 
 @property( atomic, readonly, nullable ) NSString * message;
 @property( atomic, readonly           ) double     progress;
 @property( atomic, readonly           ) BOOL       progressIsIndeterminate;
 @property( atomic, readonly           ) NSUInteger secondsRemaining;
+@property( atomic, readwrite, assign  ) NSUInteger maxThreads;
+@property( atomic, readwrite, assign  ) NSUInteger maxCharsForCaseVariants;
+@property( atomic, readwrite, assign  ) NSUInteger maxCharsForCommonSubstitutions;
 
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads;
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords;
 - ( void )crack: ( void ( ^ )( BOOL passwordFound, NSString * _Nullable password ) )completion;
 - ( void )stop;
 

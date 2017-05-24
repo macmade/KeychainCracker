@@ -41,14 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
     SecKeychainRef _keychain;
 }
 
-@property( atomic, readwrite, assign           ) KeychainCrackerOptions         options;
 @property( atomic, readwrite, strong           ) NSString                     * keychainName;
 @property( atomic, readwrite, strong           ) NSArray< NSString * >        * passwords;
 @property( atomic, readwrite, assign           ) NSUInteger                     numberOfPasswordsToTest;
 @property( atomic, readwrite, strong           ) NSMutableArray< NSString * > * foundPasswords;
 @property( atomic, readwrite, assign           ) NSUInteger                     threadsRunning;
 @property( atomic, readwrite, strong, nullable ) NSString                     * message;
-@property( atomic, readwrite, assign           ) NSUInteger                     threadCount;
 @property( atomic, readwrite, assign           ) BOOL                           initialized;
 @property( atomic, readwrite, assign           ) double                         progress;
 @property( atomic, readwrite, assign           ) BOOL                           progressIsIndeterminate;
@@ -58,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property( atomic, readwrite, strong, nullable ) void ( ^ completion )( BOOL passwordFound, NSString * _Nullable password );
 
 - ( void )crack;
-- ( void )generateVariants: ( NSMutableArray< NSString * > * )passwords withSelector: ( SEL )selector message: ( NSString * )message;
+- ( void )generateVariants: ( NSMutableArray< NSString * > * )passwords withSelector: ( SEL )selector maxChars: ( NSUInteger )maxChars message: ( NSString * )message;
 - ( void )crackPasswords: ( NSArray< NSString * > * )passwords;
 - ( void )checkProgress;
 
@@ -68,15 +66,17 @@ NS_ASSUME_NONNULL_END
 
 @implementation ConcreteKeychainCracker
 
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads
+@synthesize maxThreads;
+@synthesize maxCharsForCaseVariants;
+@synthesize maxCharsForCommonSubstitutions;
+
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords
 {
     if( ( self = [ self init ] ) )
     {
-        self.options        = options;
         self.keychainName   = keychain;
         self.passwords      = passwords;
         self.foundPasswords = [ NSMutableArray new ];
-        self.threadCount    = ( threads == 0 ) ? 1 : threads;
         
         if( [ [ NSFileManager defaultManager ] fileExistsAtPath: self.keychainName ] == NO )
         {
@@ -152,9 +152,9 @@ NS_ASSUME_NONNULL_END
     groups                = [ NSMutableArray new ];
     self.secondsRemaining = 0;
     
-    if( self.options & KeychainCrackerOptionCaseVariants )
+    if( self.maxCharsForCaseVariants > 0 )
     {
-        [ self generateVariants: passwords withSelector: @selector( caseVariants ) message: @"Generating case variants" ];
+        [ self generateVariants: passwords withSelector: @selector( caseVariants ) maxChars: self.maxCharsForCaseVariants message: @"Generating case variants" ];
     }
     
     if( atomic_load( &_stopping ) == true )
@@ -164,9 +164,9 @@ NS_ASSUME_NONNULL_END
         return;
     }
     
-    if( self.options & KeychainCrackerOptionCommonSubstitutions )
+    if( self.maxCharsForCommonSubstitutions > 0 )
     {
-        [ self generateVariants: passwords withSelector: @selector( commonSubstitutions ) message: @"Generating common substitutions" ];
+        [ self generateVariants: passwords withSelector: @selector( commonSubstitutions ) maxChars: self.maxCharsForCommonSubstitutions message: @"Generating common substitutions" ];
     }
     
     if( atomic_load( &_stopping ) == true )
@@ -180,9 +180,9 @@ NS_ASSUME_NONNULL_END
     self.numberOfPasswordsToTest = passwords.count;
     _processed                   = 0;
     self.progress                = 0;
-    n                            = ( passwords.count / self.threadCount );
+    n                            = ( passwords.count / self.maxThreads );
     
-    for( i = 0; i < self.threadCount; i++ )
+    for( i = 0; i < self.maxThreads; i++ )
     {
         if( passwords.count < n )
         {
@@ -234,7 +234,7 @@ NS_ASSUME_NONNULL_END
     self.progressIsIndeterminate = NO;
 }
 
-- ( void )generateVariants: ( NSMutableArray< NSString * > * )passwords withSelector: ( SEL )selector message: ( NSString * )message
+- ( void )generateVariants: ( NSMutableArray< NSString * > * )passwords withSelector: ( SEL )selector maxChars: ( NSUInteger )maxChars message: ( NSString * )message
 {
     NSUInteger     n;
     NSUInteger     i;
@@ -255,10 +255,17 @@ NS_ASSUME_NONNULL_END
         
         [ passwords removeObjectAtIndex: 0 ];
         
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [ passwords addObjectsFromArray: [ password performSelector: selector ] ];
-        #pragma clang diagnostic pop
+        if( password.length > maxChars )
+        {
+            [ passwords addObject: password ];
+        }
+        else
+        {
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [ passwords addObjectsFromArray: [ password performSelector: selector ] ];
+            #pragma clang diagnostic pop
+        }
         
         diff                  = -[ start timeIntervalSinceNow ];
         self.secondsRemaining = ( NSUInteger )( ( n - i ) / ( i / diff ) );

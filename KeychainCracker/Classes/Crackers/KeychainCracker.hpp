@@ -40,14 +40,7 @@ namespace XS
     {
         public:
             
-            enum class Options: unsigned int
-            {
-                Default             = 0,
-                CaseVariants        = 1 << 0,
-                CommonSubstitutions = 1 << 1,
-            };
-            
-            KeychainCracker( const std::string & keychain, const std::list< std::string > & passwords, unsigned int options, size_t threads );
+            KeychainCracker( const std::string & keychain, const std::list< std::string > & passwords );
             ~KeychainCracker( void );
             
             KeychainCracker( const KeychainCracker & o )      = delete;
@@ -63,6 +56,14 @@ namespace XS
             
             void crack( const std::function< void( bool, const std::string & ) > & completion );
             void stop( void );
+            
+            size_t maxThreads( void )                     const;
+            size_t maxCharsForCaseVariants( void )        const;
+            size_t maxCharsForCommonSubstitutions( void ) const;
+            
+            void maxThreads( size_t value );
+            void maxCharsForCaseVariants( size_t value );
+            void maxCharsForCommonSubstitutions( size_t value );
             
         private:
             

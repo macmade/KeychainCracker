@@ -45,7 +45,7 @@ typedef NS_ENUM( NSInteger, GenericKeychainCrackerImplementation )
 
 @interface GenericKeychainCracker: NSObject < KeychainCracker >
 
-- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords options: ( KeychainCrackerOptions )options threadCount: ( NSUInteger )threads implementation: ( GenericKeychainCrackerImplementation )imp NS_DESIGNATED_INITIALIZER;
+- ( nullable instancetype )initWithKeychain: ( NSString * )keychain passwords: ( NSArray< NSString * > * )passwords implementation: ( GenericKeychainCrackerImplementation )imp NS_DESIGNATED_INITIALIZER;
 
 @end
 

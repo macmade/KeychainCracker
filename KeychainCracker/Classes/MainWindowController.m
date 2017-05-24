@@ -200,7 +200,6 @@ NS_ASSUME_NONNULL_END
 - ( IBAction )crack: ( nullable id )sender
 {
     GenericKeychainCrackerImplementation imp;
-    KeychainCrackerOptions               options;
     NSArray< NSString * >              * passwords;
     NSData                             * data;
     
@@ -221,20 +220,19 @@ NS_ASSUME_NONNULL_END
         return;
     }
     
-    options = KeychainCrackerOptionDefault;
+    imp                     = ( self.useCPPImplementation ) ? GenericKeychainCrackerImplementationCXX : GenericKeychainCrackerImplementationObjectiveC;
+    self.cracker            = [ [ GenericKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords implementation: imp ];
+    self.cracker.maxThreads = ( self.numberOfThreads ) ? ( NSUInteger )( self.numberOfThreads ) : 1;
     
-    if( self.caseVariants )
+    if( self.caseVariants && self.caseVariantsMax > 0 )
     {
-        options |= KeychainCrackerOptionCaseVariants;
+        self.cracker.maxCharsForCaseVariants = ( NSUInteger )( self.caseVariantsMax );
     }
     
-    if( self.commonSubstitutions )
+    if( self.commonSubstitutions && self.commonSubstitutionsMax > 0 )
     {
-        options |= KeychainCrackerOptionCommonSubstitutions;
+        self.cracker.maxCharsForCommonSubstitutions = ( NSUInteger )( self.commonSubstitutionsMax );
     }
-    
-    imp          = ( self.useCPPImplementation ) ? GenericKeychainCrackerImplementationCXX : GenericKeychainCrackerImplementationObjectiveC;
-    self.cracker = [ [ GenericKeychainCracker alloc ] initWithKeychain: self.keychain passwords: passwords options: options threadCount: ( NSUInteger )( self.numberOfThreads ) implementation: imp ];
     
     if( self.cracker == nil )
     {
