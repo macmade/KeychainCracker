@@ -516,7 +516,7 @@ namespace XS
                                         + std::to_string( last )
                                         + " / sec)";
                 this->_lastProcessed    = done;
-                this->_secondsRemaining = ( total - done ) / last;
+                this->_secondsRemaining = ( last ) ? ( total - done ) / last : 0;
             }
         }
         

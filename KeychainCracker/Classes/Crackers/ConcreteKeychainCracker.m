@@ -394,7 +394,7 @@ NS_ASSUME_NONNULL_END
         s                     = [ NSNumberFormatter localizedStringFromNumber: [ NSNumber numberWithUnsignedInteger: total ] numberStyle: NSNumberFormatterDecimalStyle ];
         self.message          = [ NSString stringWithFormat: @"Trying %@ passwords - %.0f%% (~%lu / sec)", s, self.progress * 100, last ];
         self.lastProcessed    = done;
-        self.secondsRemaining = ( total - done ) / last;
+        self.secondsRemaining = ( last ) ? ( total - done ) / last : 0;
     }
     
     return;
