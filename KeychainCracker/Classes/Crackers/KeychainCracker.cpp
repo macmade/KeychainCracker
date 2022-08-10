@@ -380,7 +380,7 @@ namespace XS
             
             this->_progress = static_cast< double >( i ) / static_cast< double >( n );
             
-            sprintf( percent, "%.0f", this->_progress * 100 );
+            snprintf( percent, sizeof(percent), "%.0f", this->_progress * 100 );
             
             this->_message  = message + " - " + percent + "%";
             
@@ -506,7 +506,7 @@ namespace XS
                 total           = this->_numberOfPasswordsToTest;
                 this->_progress = static_cast< double >( done ) / static_cast< double >( total );
                 
-                sprintf( percent, "%.0f", this->_progress * 100 );
+                snprintf( percent, sizeof(percent), "%.0f", this->_progress * 100 );
                 
                 this->_message          = std::string( "Trying " )
                                         + std::to_string( total )
